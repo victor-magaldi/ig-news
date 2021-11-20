@@ -1,5 +1,5 @@
 // import Image from "next/image";
-import { SignInButton } from "../SignInButton/SignInButton";
+import { SignInButton } from "../SignInButton";
 import styles from "./style.module.scss";
 
 export function Header() {
