@@ -13,7 +13,6 @@ interface HomeProps {
 }
 
 export default function Home({ product }: HomeProps) {
-  console.log(product);
   return (
     <>
       <Head>
@@ -30,7 +29,7 @@ export default function Home({ product }: HomeProps) {
             <br />
             <span>for {product.amount} month</span>
           </p>
-          <SubscriberButton />
+          <SubscriberButton priceId={product.priceId} />
         </section>
         <img src="/images/avatar.svg" alt="Girl coding" />
       </main>
@@ -38,6 +37,7 @@ export default function Home({ product }: HomeProps) {
   );
 }
 export const getServerSideProps: GetServerSideProps = async () => {
+  // expand faz com que consiga todos os outros dados do produto
   const price = await stripe.prices.retrieve("price_1JyOpKHZlUJYmkb8GPFgnfFD", {
     expand: ["product"],
   });
