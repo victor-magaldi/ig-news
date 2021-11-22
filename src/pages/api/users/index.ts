@@ -1,18 +1,18 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+// import { NextApiRequest, NextApiResponse } from 'next'
 
 
-export default function users(request: NextApiRequest, response: NextApiResponse) {
+// export default function users(request: NextApiRequest, response: NextApiResponse) {
 
-    const users = [
-        {
-            id: 1,
-            name: "Victor"
-        },
-        {
-            id: 2,
-            name: "teste"
-        }
-    ]
+//     const users = [
+//         {
+//             id: 1,
+//             name: "Victor"
+//         },
+//         {
+//             id: 2,
+//             name: "teste"
+//         }
+//     ]
 
-    return response.json(users)
-}
+//     return response.json(users)
+// }
