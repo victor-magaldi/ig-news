@@ -18,6 +18,8 @@ export const config = {
     bodyParser: false,
   },
 }
+const relevantsTypes = new Set(["checkout.session.completed"])
+
 
 export default async function subscribe(
   req: NextApiRequest,
@@ -35,7 +37,24 @@ export default async function subscribe(
       return res.status(400).send(`webhook error:${err.message}`)
     }
 
-    res.status(200).json({ ok: true })
+    const { type } = event
+
+    if (relevantsTypes.has(type)) {
+      try {
+        switch (type) {
+          case "checkout.session.completed":
+            break
+          default:
+            throw new Error("Unhandled event.")
+        }
+      }
+      catch (err) {
+        return res.json({ error: "webhook handles failed" })
+      }
+
+    }
+
+    res.json({ received: true })
   } else {
     res.setHeader("allow", "POST")
     res.status(405).end("method not allowed")
