@@ -45,7 +45,6 @@ export default async function subscribe(
         switch (type) {
           case "checkout.session.completed":
             const checkoutSession = event.data.object as Stripe.Checkout.Session
-            console.log("TESTE")
             await saveSubscription(checkoutSession.subscription.toString(), checkoutSession.customer.toString())
             break
           default:

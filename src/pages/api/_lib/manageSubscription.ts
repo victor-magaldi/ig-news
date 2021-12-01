@@ -4,7 +4,7 @@ import { stripe } from "../../../services/stripe";
 import { query as q } from "faunadb"
 
 export async function saveSubscription(subscriptionId: string, customerId: string) {
-  console.log("entrou")
+
   const userRef = await fauna.query(
     q.Select(
       "ref",
@@ -15,10 +15,8 @@ export async function saveSubscription(subscriptionId: string, customerId: strin
       )
     )
   )
-  console.log("userRef", userRef)
 
   const subscription = await stripe.subscriptions.retrieve(subscriptionId)
-  console.log("userRef", subscription)
 
   const subscriptionData = {
     id: subscription.id,
@@ -38,5 +36,5 @@ export async function saveSubscription(subscriptionId: string, customerId: strin
     console.log("error", err)
   }
 
-  console.log("Criaado?")
+
 }
