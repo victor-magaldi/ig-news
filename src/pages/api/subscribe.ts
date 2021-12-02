@@ -27,13 +27,16 @@ export default async function subscribe(
         )
       )
     )
+    console.log("req", user)
 
     let customerId = user.data?.stripe_customer_id
+    console.log("customerId", customerId)
 
     if (!customerId) {
       const stripeCustomer = await stripe.customers.create({
         email: session.user.email,
       })
+      console.log("stripeCustomer", stripeCustomer)
 
 
       await fauna.query(
