@@ -42,7 +42,6 @@ export default async function subscribe(
     }
 
     const { type } = event
-    console.log("type", type)
 
     if (relevantsTypes.has(type)) {
       try {

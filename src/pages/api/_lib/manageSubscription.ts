@@ -16,10 +16,8 @@ export async function saveSubscription(subscriptionId: string, customerId: strin
       )
     )
   )
-  console.log("userRef", userRef)
 
   const subscription = await stripe.subscriptions.retrieve(subscriptionId)
-  console.log("subscription", subscription)
 
   const subscriptionData = {
     id: subscription.id,
@@ -29,8 +27,7 @@ export async function saveSubscription(subscriptionId: string, customerId: strin
 
   }
 
-  console.log("createAction", createAction)
-  console.log("subscriptionData", subscriptionData)
+
   if (createAction) {
     try {
       await fauna.query(
