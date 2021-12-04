@@ -5,6 +5,7 @@ import { query as q } from "faunadb"
 
 export async function saveSubscription(subscriptionId: string, customerId: string, createAction: boolean = false) {
 
+
   const userRef = await fauna.query(
     q.Select(
       "ref",
@@ -15,8 +16,10 @@ export async function saveSubscription(subscriptionId: string, customerId: strin
       )
     )
   )
+  console.log("userRef", userRef)
 
   const subscription = await stripe.subscriptions.retrieve(subscriptionId)
+  console.log("subscription", subscription)
 
   const subscriptionData = {
     id: subscription.id,
@@ -26,7 +29,8 @@ export async function saveSubscription(subscriptionId: string, customerId: strin
 
   }
 
-
+  console.log("createAction", createAction)
+  console.log("subscriptionData", subscriptionData)
   if (createAction) {
     try {
       await fauna.query(
@@ -40,7 +44,7 @@ export async function saveSubscription(subscriptionId: string, customerId: strin
     }
   } else {
     try {
-      console.log
+
       await fauna.query(
         q.Replace(
           q.Select(

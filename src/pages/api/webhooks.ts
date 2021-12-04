@@ -19,8 +19,10 @@ export const config = {
     bodyParser: false,
   },
 }
-const relevantsTypes = new Set(["checkout.session.completed",
-  "customer.subscription.updated", "customer.subscription.deleted "])
+const relevantsTypes = new Set([
+  "checkout.session.completed",
+  "customer.subscription.updated",
+  "customer.subscription.deleted"])
 
 
 export default async function subscribe(
@@ -40,6 +42,7 @@ export default async function subscribe(
     }
 
     const { type } = event
+    console.log("type", type)
 
     if (relevantsTypes.has(type)) {
       try {
@@ -50,7 +53,8 @@ export default async function subscribe(
 
             await saveSubscription(
               subscription.id,
-              subscription.customer.toString())
+              subscription.customer.toString(),
+              false)
 
             break
 
