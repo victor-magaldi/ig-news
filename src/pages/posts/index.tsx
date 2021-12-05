@@ -1,11 +1,21 @@
 import { GetStaticProps } from "next";
 import Prismic from "@prismicio/client";
+import { RichText } from "prismic-dom";
 import Head from "next/head";
 import React from "react";
 import { getPrismicClient } from "../../services/prismic";
 import style from "./style.module.scss";
 
-export default function Posts() {
+type Post = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  updatedAt: string;
+};
+interface PostProps {
+  posts: Post[];
+}
+export default function Posts({ posts }: PostProps) {
   return (
     <>
       <Head>
@@ -13,40 +23,15 @@ export default function Posts() {
       </Head>
       <main className={style.container}>
         <div className={style.posts}>
-          <a href="#">
-            <time>17 de março</time>
-            <strong>Tille my post is this</strong>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam
-              laudantium illo aspernatur quis incidunt adipisci debitis ullam
-              amet odit ducimus magnam iusto voluptatibus officia nemo atque
-              alias aut, doloribus facere. Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Magnam, iure, voluptatum beatae
-              architecto cumque harum explicabo recusandae, quibusdam porro
-              possimus fugit nostrum tenetur earum animi itaque saepe numquam
-              aliquam doloremque. Cumque reprehenderit nemo quis ut hic velit
-              sunt, similique perspiciatis quasi perferendis vel labore dicta
-              iste quisquam iusto cupiditate placeat quae? Repellendus magni id
-              corporis rerum ipsum reprehenderit eum atque!
-            </p>
-          </a>
-          <a href="#">
-            <time>17 de março</time>
-            <strong>Tille my post is this</strong>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam
-              laudantium illo aspernatur quis incidunt adipisci debitis ullam
-              amet odit ducimus magnam iusto voluptatibus officia nemo atque
-              alias aut, doloribus facere. Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Magnam, iure, voluptatum beatae
-              architecto cumque harum explicabo recusandae, quibusdam porro
-              possimus fugit nostrum tenetur earum animi itaque saepe numquam
-              aliquam doloremque. Cumque reprehenderit nemo quis ut hic velit
-              sunt, similique perspiciatis quasi perferendis vel labore dicta
-              iste quisquam iusto cupiditate placeat quae? Repellendus magni id
-              corporis rerum ipsum reprehenderit eum atque!
-            </p>
-          </a>
+          {posts.map((post: Post) => {
+            return (
+              <a href={`/${post.slug}`} key={post.slug}>
+                <time>{post.updatedAt}</time>
+                <strong>{post.title}</strong>
+                {post.excerpt}
+              </a>
+            );
+          })}
         </div>
       </main>
     </>
@@ -63,9 +48,28 @@ export const getStaticProps: GetStaticProps = async () => {
       pageSize: 100,
     }
   );
+
+  const posts = response.results.map((post) => {
+    const dateFormated = new Date(
+      post?.last_publication_date
+    ).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+
+    return {
+      slug: post.uid,
+      title: RichText.asText(post.data.title),
+      excerpt:
+        post.data.content.find((content) => content.type === "paragraph")
+          ?.text ?? "",
+      updatedAt: dateFormated,
+    };
+  });
   // dica para melhorar o console log no terminal
-  console.log(JSON.stringify(response, null, 2));
+  // console.log(JSON.stringify(response, null, 2));
   return {
-    props: {},
+    props: { posts },
   };
 };
