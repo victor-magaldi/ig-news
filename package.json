@@ -8,10 +8,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.5.5",
     "@prismicio/client": "^5.1.0",
     "@stripe/stripe-js": "^1.21.1",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
+    "apollo-link-prismic": "^1.0.9",
     "axios": "^0.24.0",
     "faunadb": "^4.4.1",
+    "graphql": "^16.0.1",
+    "graphql-tag": "^2.12.6",
     "next": "12.0.3",
     "next-auth": "^3.29.0",
     "react": "17.0.2",
