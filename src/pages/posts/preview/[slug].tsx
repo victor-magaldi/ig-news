@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import { getSession } from "next-auth/client";
+import Link from "next/link";
 import Head from "next/head";
 import { RichText } from "prismic-dom";
 import React from "react";
@@ -30,6 +30,13 @@ export default function Preview({ post }: PreviewProps) {
             className={`${styles.postContent} ${styles.previewContent} `}
             dangerouslySetInnerHTML={{ __html: post?.content }}
           />
+
+          <div className={styles.continuousReading}>
+            Wanna continue reading?
+            <Link href="/">
+              <a>Subscribe Now 😎</a>
+            </Link>
+          </div>
         </article>
       </main>
     </>
