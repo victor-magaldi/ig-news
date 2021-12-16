@@ -55,8 +55,12 @@ export default function Preview({ post }: PreviewProps) {
     </>
   );
 }
-export const getStaticPaths: GetStaticPaths = () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
+    //se quiser gerar as páginas estáticas em tempo de build, só colocar elas dentod do array path
+    // paths: [{ params: { slug: "what-makes-a-man" } }],
+
+    //fazendo da forma abaixo o server só vai gerar a página estática depois do primeiro acesso
     paths: [],
     fallback: "blocking",
   };
@@ -83,5 +87,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
   return {
     props: { post },
+    revalidate: 60 * 60 * 200,
   };
 };
