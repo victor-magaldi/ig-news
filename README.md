@@ -20,14 +20,16 @@ Foram usados novos recursos do React como:
 - axios
 - hook useState, useEffect , context API
 - @prismicio/client para consumir os dados do headlessCms
-- NextAuth com auth do github
-- Foi usado Webhooks do stripe para fazer disparo de eventos em nossa API
+- Graphql para ser uma alternativa ao consumir o Prismic
 
 **Server:**
 
-- Utilizou-se o NextJs para fazer a API , onde existem validações das assinaturas dos usuários pelo utilizando o banco FaunaDB e integraçoes com Auth do Github feita através do NextAuth
+- Utilizou-se o NextJs para fazer a API
+- NextAuth com usando o github para se autenticar
+- Foram usados Webhooks do stripe para realizar disparos de eventos em nossa API
+- Validações das assinaturas dos usuários utilizando o banco FaunaDB
 
-## Stripe map webhooks
+## Stripe test webhooks
 
 Tendo stripe.exe na raiz do projeto
 
