@@ -29,7 +29,7 @@ Foram usados novos recursos do React como:
 - Foram usados Webhooks do stripe para realizar disparos de eventos em nossa API
 - Validações das assinaturas dos usuários utilizando o banco FaunaDB
 
-## Stripe test webhooks
+## Stripe test webhooks 💻
 
 Tendo stripe.exe na raiz do projeto
 
