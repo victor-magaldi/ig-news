@@ -1,26 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# IgNews 🚀
 
-## Getting Started
+O projeto foi projetado Totalmente pensando totalmente JAM Stack , onde consumimos um CMS headless (prismicIO) por intermédio de uma api e utilizamos o React(jsx) para
+\
+\
+![gif 1](https://raw.githubusercontent.com/victor-magaldi/ig-news/main/src/assets/gif-1.gif)
+\
+![gif 2](https://raw.githubusercontent.com/victor-magaldi/ig-news/main/src/assets/gif-2.gif)
 
-First, run the development server:
+## Tecnologias e técnicas🔥
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+**Client:** , ,
+\
+Foram usados novos recursos do React como:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- React
+- Typescript
+- React Modal,
+- styled components
+- axios
+- hook useState, useEffect , context API
+- @prismicio/client para consumir os dados do headlessCms
+- NextAuth com auth do github
+- Foi usado Webhooks do stripe para fazer disparo de eventos em nossa API
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+**Server:**
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Utilizou-se o NextJs para fazer a API , onde existem validações das assinaturas dos usuários pelo utilizando o banco FaunaDB e integraçoes com Auth do Github feita através do NextAuth
 
 ## Stripe map webhooks
 
-with stripe.exe in your repository
+Tendo stripe.exe na raiz do projeto
 
 ```bash
 npx stripe login
@@ -28,4 +37,34 @@ npx stripe login
 
 ```
 npx stripe listen --forward-to localhost:3000/api/webhooks
+```
+
+## Rodando o Projeto 💻
+
+Clonar o projeto
+
+```bash
+  git clone https://github.com/victor-magaldi/ig-news.git
+```
+
+```bash
+  cd /ig-news
+```
+
+Instalar dependências
+
+```bash
+  npm install
+```
+
+para rodar o projeto
+
+```bash
+  npm run dev
+```
+
+para criar uma build de produção
+
+```bash
+  npm run build
 ```
